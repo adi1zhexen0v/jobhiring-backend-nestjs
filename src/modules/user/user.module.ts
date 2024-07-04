@@ -6,10 +6,11 @@ import { AuthService } from "./services/auth.service";
 import { UserController } from "./controllers/user.controller";
 import { AuthController } from "./controllers/auth.controller";
 import { BcryptService } from "@services/bcrypt/bcrypt.service";
+import { MailService } from "@services/mail/mail.service";
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
   controllers: [UserController, AuthController],
-  providers: [UserService, AuthService, BcryptService]
+  providers: [UserService, AuthService, BcryptService, MailService]
 })
 export class UserModule {}

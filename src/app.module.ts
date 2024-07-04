@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@common/config/config.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@common/config/config.module";
+import { MongooseConfigModule } from "@common/database/database.module";
+import { UserModule } from "@modules/user/user.module";
 
 @Module({
-  imports: [ConfigModule],
+  imports: [ConfigModule, MongooseConfigModule, UserModule],
   controllers: [],
-  providers: [],
+  providers: []
 })
-export class AppModule { }
+export class AppModule {}

@@ -18,7 +18,10 @@
     "noFallthroughCasesInSwitch": false,
     "baseUrl": "./src",
     "paths": {
-      "@common/*": ["common/*"]
+      "@common/*": ["common/*"],
+      "@utils/*": ["utils/*"],
+      "@modules/*": ["modules/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src/**/*"],

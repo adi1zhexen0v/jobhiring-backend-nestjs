@@ -4,9 +4,9 @@ import { ConfigModule as NestConfigModule } from "@nestjs/config";
 @Module({
   imports: [
     NestConfigModule.forRoot({
-      envFilePath: ".env",
-    }),
+      envFilePath: ".env"
+    })
   ],
-  exports: [NestConfigModule],
+  exports: [NestConfigModule]
 })
-export class ConfigModule { }
+export class ConfigModule {}

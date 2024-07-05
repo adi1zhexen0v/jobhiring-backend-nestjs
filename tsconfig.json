@@ -21,7 +21,9 @@
       "@common/*": ["common/*"],
       "@utils/*": ["utils/*"],
       "@modules/*": ["modules/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@guards/*": ["guards/*"],
+      "@decorators/*": ["common/decorators/*"]
     }
   },
   "include": ["src/**/*"],

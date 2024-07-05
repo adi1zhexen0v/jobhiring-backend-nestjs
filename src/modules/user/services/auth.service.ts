@@ -7,7 +7,12 @@ import { MailService } from "@services/mail/mail.service";
 import { JwtService } from "@services/jwt/jwt.service";
 import { generateActivationCode } from "@utils/utils";
 import { JwtPayload } from "@utils/types";
-import { RegisterUserDto, LoginUserDto, ActivateAccountDto, ResendActivationCodeDto } from "../dtos";
+import {
+  RegisterUserDto,
+  LoginUserDto,
+  ActivateAccountDto,
+  ResendActivationCodeDto
+} from "../dtos";
 
 @Injectable()
 export class AuthService {
@@ -17,7 +22,7 @@ export class AuthService {
     private readonly bcryptService: BcryptService,
     private readonly mailService: MailService,
     private readonly jwtService: JwtService
-  ) { }
+  ) {}
 
   async register(dto: RegisterUserDto) {
     const { email, password } = dto;
@@ -70,7 +75,7 @@ export class AuthService {
     );
 
     await this.userModel.findOneAndUpdate({ email }, { $set: { activationCode } });
-    return { message: 'Activation code resent successfully' };
+    return { message: "Activation code resent successfully" };
   }
 
   async activateAccount(dto: ActivateAccountDto) {
@@ -90,7 +95,11 @@ export class AuthService {
       throw new HttpException("Activation code expired, new code sent", HttpStatus.BAD_REQUEST);
     }
 
-    const user = await this.userModel.findOneAndUpdate({ email }, { $set: { isActivated: true }, $unset: { activationCode: 1 } }, { new: true });
+    const user = await this.userModel.findOneAndUpdate(
+      { email },
+      { $set: { isActivated: true }, $unset: { activationCode: 1 } },
+      { new: true }
+    );
     return user;
   }
 }

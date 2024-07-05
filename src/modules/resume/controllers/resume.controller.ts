@@ -1,16 +1,23 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { ResumeService } from '../services/resume.service';
-import { CreateResumeDto } from '../dtos/create-resume.dto';
+import { Body, Controller, HttpCode, Post, Request, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { AuthGuard } from "@guards/auth.guard";
+import { GetUser } from "@decorators/get-user.decorator";
+import { Employee } from "@decorators/roles.decorator";
+import { JwtPayload } from "@utils/types";
+import { ResumeService } from "../services/resume.service";
+import { CreateResumeDto } from "../dtos/create-resume.dto";
 
 @ApiTags("resume")
-@Controller('resume')
+@Controller("resume")
 export class ResumeController {
-  constructor(private readonly resumeService: ResumeService) { }
+  constructor(private readonly resumeService: ResumeService) {}
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Employee()
   @Post()
   @HttpCode(201)
-  createResume(@Body() dto: CreateResumeDto) {
-    return this.resumeService.createResume(dto);
+  createResume(@Body() dto: CreateResumeDto, @GetUser() user: JwtPayload) {
+    return this.resumeService.createResume({ ...dto, userId: user.id });
   }
 }

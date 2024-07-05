@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { JobService } from './services/job.service';
-import { JobController } from './job.controller';
-import { Job, JobSchema } from './schemas/job.schema';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { JobService } from "./services/job.service";
+import { JobController } from "./job.controller";
+import { Job, JobSchema } from "./schemas/job.schema";
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Job.name, schema: JobSchema }])],
@@ -10,4 +10,4 @@ import { Job, JobSchema } from './schemas/job.schema';
   providers: [JobService],
   exports: [JobService]
 })
-export class JobModule { }
+export class JobModule {}

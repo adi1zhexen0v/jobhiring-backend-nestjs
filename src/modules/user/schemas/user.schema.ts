@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { HydratedDocument, Types } from "mongoose";
 import { UserRole } from "@utils/enums";
 
 export type UserDocument = HydratedDocument<User>;
@@ -21,6 +21,9 @@ export class User {
     match: /.+\@.+\..+/
   })
   email: string;
+
+  @Prop({ type: String, required: false, trim: true })
+  phoneNumber: string;
 
   @Prop({ type: String, required: true, trim: true })
   password: string;
@@ -49,6 +52,9 @@ export class User {
     code: string;
     expiresIn: Date;
   };
+
+  @Prop({ type: [Types.ObjectId], required: false, ref: "Resume" })
+  desiredJob: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

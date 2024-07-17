@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Types } from "mongoose";
 import { Genders } from "@utils/enums";
 
-@Schema()
+@Schema({ _id: false })
 export class PersonalInfo {
   @Prop({ type: String, required: true, trim: true })
   firstName: string;

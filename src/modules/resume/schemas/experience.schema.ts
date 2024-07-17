@@ -3,7 +3,7 @@ import { HydratedDocument, Types } from "mongoose";
 
 export type ExperienceDocument = HydratedDocument<Experience>;
 
-@Schema()
+@Schema({ _id: false })
 export class Experience {
   @Prop({ type: Types.ObjectId, required: true, ref: "Workplace" })
   workplace: Types.ObjectId;
@@ -17,7 +17,7 @@ export class Experience {
   @Prop({ type: Date, required: true })
   startDate: Date;
 
-  @Prop({ type: Date, required: true, default: new Date() })
+  @Prop({ type: Date, required: false })
   endDate: Date;
 }
 

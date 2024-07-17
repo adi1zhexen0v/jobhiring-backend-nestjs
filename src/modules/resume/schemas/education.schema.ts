@@ -4,7 +4,7 @@ import { EducationDegrees } from "@utils/enums";
 
 export type EducationDocument = HydratedDocument<Education>;
 
-@Schema()
+@Schema({ _id: false })
 export class Education {
   @Prop({ type: Types.ObjectId, required: true, ref: "School" })
   school: Types.ObjectId;

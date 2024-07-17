@@ -6,6 +6,7 @@ import { MailModule } from "@services/mail/mail.module";
 import { JwtModule } from "@services/jwt/jwt.module";
 import { ResumeModule } from "./modules/resume/resume.module";
 import { JobModule } from "./modules/job/job.module";
+import { SchoolModule } from "./modules/school/school.module";
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { JobModule } from "./modules/job/job.module";
     MailModule,
     JwtModule,
     ResumeModule,
-    JobModule
+    JobModule,
+    SchoolModule
   ],
   controllers: [],
   providers: []
